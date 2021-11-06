@@ -1,4 +1,3 @@
-
 const userName = document.querySelector('.user-name');
 const buttonAuth = document.querySelector('.button-auth');
 const modalAuth = document.querySelector('.modal-auth');
@@ -20,37 +19,37 @@ buttonOut.addEventListener('click', () => {
 	logout();
 });
 
-loginForm.addEventListener('.submit', (event) => {
-	event.preventDefault();
+const login = (user) => {
+	buttonAuth.style.display = 'none';
+	buttonOut.style.display = 'flex';
+	userName.style.display = 'flex';
+	userName.textContent = user.login;
+	modalAuth.style.display = 'none';
+};
+
+const logout = () => {
+	buttonAuth.style.display = 'flex';
+	buttonOut.style.display = 'none';
+	userName.style.display = 'none';
+	userName.textContent = '';
+	localStorage.removeItem('user');
+};
+
+if (localStorage.getItem('user')) {
+	login('localStorage', JSON.parse(localStorage.getItem('user')));
+	// console.log('localStorage', JSON.parse(localStorage.getItem('user')));
+};
+
+loginForm.addEventListener('submit', (e) => {
+	e.preventDefault();
 
 	const user = {
 		login: inputLogin.value,
 		password: inputPassword.value
 	};
-
 	localStorage.setItem('user', JSON.stringify(user));
 	login(user);
 });
 
-if (localStorage.getItem('user')) {
-	login('localStorage', JSON.parse(localStorage.getItem('user')));
 
-	// console.log('localStorage', JSON.parse(localStorage.getItem('user')));
 
-};
-
-const logout = () => {
-	buttonAuth.style.dsiplay = 'flex';
-	buttonOut.style.dsiplay = 'none';
-	userName.style.dsiplay = 'none';
-	userName.textContent = '';
-	localStorage.removeItem('user');
-};
-
-const login = (user) => {
-	buttonAuth.style.dsiplay = 'none';
-	buttonOut.style.dsiplay = 'flex';
-	userName.style.dsiplay = 'flex';
-	userName.textContent = user.login;
-	modalAuth.style.display = 'none';
-};
