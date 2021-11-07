@@ -24,7 +24,8 @@ const auth = () => {
 		buttonAuth.style.display = 'none';
 		buttonOut.style.display = 'flex';
 		userName.style.display = 'flex';
-		userName.textContent = user.login;
+		userName.textContent = JSON.parse(localStorage.getItem('user')).login;
+		//userName.textContent = user.login;
 		modalAuth.style.display = 'none';
 	};
 
