@@ -1,0 +1,25 @@
+{
+	"name": "fds",
+	"version": "1.0.0",
+	"description": "Food delivery service on JS",
+	"main": ".eslintrc.js",
+	"scripts": {
+		"build": "webpack --mode=production",
+		"watch": "webpack --watch --mode=development"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/keta548/FDS.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/keta548/FDS/issues"
+	},
+	"homepage": "https://github.com/keta548/FDS#readme",
+	"devDependencies": {
+		"webpack": "^5.62.1",
+		"webpack-cli": "^4.9.1"
+	}
+}
