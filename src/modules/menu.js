@@ -1,6 +1,12 @@
+import cart from "./cart";
+
 const menu = () => {
 	const cardsMenu = document.querySelector('.cards-menu');
 	//console.log('cardsMenu:', cardsMenu)
+
+	const cartArray = localStorage.getItem('cart') ?
+		JSON.parse(localStorage.getItem('cart')) :
+		[];
 
 	const changeTitle = (restaurant) => {
 		console.log('restaurant:', restaurant)
@@ -14,6 +20,22 @@ const menu = () => {
 		const restaurantCategory = document.querySelector('.category');
 		restaurantCategory.textContent = restaurant.kitchen;
 	};
+
+
+
+	const addToCart = (cartItem) => {
+
+		if (cartArray.some((item) => item.id === cartItem.id)) {
+			cartArray.map((item => {
+				if (item.id === cartItem.id) { item.count++ }
+
+				return item;
+			}))
+		} else {
+			cartArray.push(cartItem);
+		}
+		localStorage.setItem('cart', JSON.stringify(cartArray))
+	}
 
 	const renderitems = (data) => {
 		//console.log('data:', data);
@@ -41,6 +63,9 @@ const menu = () => {
 							</div>
 						</div>
 			`;
+			card.querySelector('.button-card-text').addEventListener('click', () => {
+				addToCart({ name, price, id, count: 1 });
+			});
 			cardsMenu.append(card);
 		});
 	};

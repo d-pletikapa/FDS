@@ -9,6 +9,7 @@ const auth = () => {
 	const inputLogin = document.getElementById('login'); //inputLogin.setAttribute = ("required", "");
 	inputLogin.required = true;
 	const inputPassword = document.getElementById('password');
+	
 
 	buttonAuth.addEventListener('click', () => { modalAuth.style.display = 'flex'; });
 
@@ -23,6 +24,7 @@ const auth = () => {
 	const login = (user) => {
 		buttonAuth.style.display = 'none';
 		buttonOut.style.display = 'flex';
+		buttonCart.style.display = 'flex';
 		userName.style.display = 'flex';
 		userName.textContent = JSON.parse(localStorage.getItem('user')).login;
 		//userName.textContent = user.login;
@@ -32,6 +34,7 @@ const auth = () => {
 	const logout = () => {
 		buttonAuth.style.display = 'flex';
 		buttonOut.style.display = 'none';
+		buttonCart.style.display = 'none';
 		userName.style.display = 'none';
 		userName.textContent = '';
 		localStorage.removeItem('user');
