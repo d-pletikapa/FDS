@@ -31,11 +31,17 @@ const partners = () => {
 			a.addEventListener('click', (e) => {
 				e.preventDefault()
 				//const link = a.dataset.products
-				localStorage.setItem('restaurant', JSON.stringify(item))
-				window.location.href = '/restaurant.html'
-				console.log('a:', a)
-			});
 
+				if (localStorage.getItem('user')) {
+					localStorage.setItem('restaurant', JSON.stringify(item));
+					window.location.href = '/restaurant.html';
+					console.log('a:', a);
+				}
+				else {
+					const modalAuth = document.querySelector('.modal-auth');
+					modalAuth.style.display = 'flex';
+				}
+			});
 			cardsRestaurants.append(a);
 		});
 	};
