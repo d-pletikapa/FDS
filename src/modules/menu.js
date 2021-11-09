@@ -1,5 +1,3 @@
-import cart from "./cart";
-
 const menu = () => {
 	const cardsMenu = document.querySelector('.cards-menu');
 	//console.log('cardsMenu:', cardsMenu)
