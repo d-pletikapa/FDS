@@ -1,4 +1,7 @@
-import auth from "./modules/auth.js";
-import menu from "./modules/menu.js";
-auth()
-menu()
+import auth from "./modules/auth";
+import cart from "./modules/cart";
+import menu from "./modules/menu";
+
+auth();
+cart();
+menu();
