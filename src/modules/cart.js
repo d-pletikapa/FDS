@@ -3,8 +3,8 @@ const cart = () => {
 	const buttonCart = document.getElementById('cart-button');
 	const modalCart = document.querySelector('.modal-cart');
 	const close = modalCart.querySelector('.close');
-	const body = modalCart.querySelector('.modal-body')
-	const buttonSend = modalCart.querySelector('.button-primary')
+	const body = modalCart.querySelector('.modal-body');
+	const buttonSend = modalCart.querySelector('.button-primary');
 
 	const resetCart = () => {
 		body.innerHTML = '';
@@ -15,24 +15,24 @@ const cart = () => {
 
 
 	const incrementCount = (id) => {
-		const cartArray = JSON.parse(localStorage.getItem('cart'))
-		console.log('id')
+		const cartArray = JSON.parse(localStorage.getItem('cart'));
+		console.log('id');
 
 		cartArray.map((item) => {
 
 			if (item.id === id) {
-				item.count++
+				item.count++;
 			}
-			return item
-		})
-		localStorage.setItem('cart', JSON.stringify(cartArray))
+			return item;
+		});
+		localStorage.setItem('cart', JSON.stringify(cartArray));
 		renderitems(cartArray);
 
 	};
 
 	const decrementCount = (id) => {
-		const cartArray = JSON.parse(localStorage.getItem('cart'))
-		console.log('id')
+		const cartArray = JSON.parse(localStorage.getItem('cart'));
+		console.log('id');
 
 		cartArray.map((item) => {
 
@@ -42,9 +42,9 @@ const cart = () => {
 				// 	item.count--
 				// } else { item.count = 0 }
 			}
-			return item
-		})
-		localStorage.setItem('cart', JSON.stringify(cartArray))
+			return item;
+		});
+		localStorage.setItem('cart', JSON.stringify(cartArray));
 		renderitems(cartArray);
 
 	};
@@ -57,8 +57,8 @@ const cart = () => {
 		data.forEach(({ name, price, id, count }) => {
 			console.log(cartItem);
 
-			const cartElem = document.querySelector('div')
-			cartElem.classList.add('food-row')
+			const cartElem = document.querySelector('div');
+			cartElem.classList.add('food-row');
 
 
 			cartElem.innerHTML = `
@@ -74,25 +74,25 @@ const cart = () => {
 
 			// cartElem.querySelector('.btn-inc').addEventListener('click', () => { incrementCount(id) });
 
-			body.append(cartElem)
+			body.append(cartElem);
 
 		});
-	}
+	};
 
 	body.addEventListener('click', (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		if (e.target.classList.contains('btn-inc')) {
-			incrementCount(e.target.dataset.index)
+			incrementCount(e.target.dataset.index);
 		} else if (e.target.classList.contains('btn-dec')) {
-			decrementCount(e.target.dataset.index)
+			decrementCount(e.target.dataset.index);
 		} else if (e.target.classList.contains('clear-cart')) {
 			resetCart();
 		}
-	})
+	});
 
 	buttonSend.addEventListener('click', () => {
 
-		const cartArray = localStorage.getItem('cart')
+		const cartArray = localStorage.getItem('cart');
 		fetch('https://jsonplaceholder.typicode.com/posts', {
 			method: 'POST',
 			body: cartArray
@@ -102,11 +102,11 @@ const cart = () => {
 				if (response.ok) {
 					//console.log('ok') 
 					resetCart();
-				};
+				}
 			}).catch(e => {
 				console.error(e);
-			})
-	})
+			});
+	});
 
 	buttonCart.addEventListener('click', (e) => {
 
@@ -118,14 +118,14 @@ const cart = () => {
 		modalCart.classList.add('is-open');
 
 		console.log('click:');
-	})
+	});
 
 	close.addEventListener('click', (e) => {
 		modalCart.classList.remove('is-open');
 
 		console.log('click:');
-	})
+	});
 
-}
+};
 
-export default cart
+export default cart;
