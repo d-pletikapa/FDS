@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://github.com/keta548/FDS#readme",
 	"devDependencies": {
+		"eslint": "^8.2.0",
 		"webpack": "^5.62.1",
 		"webpack-cli": "^4.9.1"
 	},
