@@ -1,6 +1,9 @@
-import auth from "./modules/auth.js";
-import partners from "./modules/partners.js";
-import cart from "./modules/cart.js";
+import auth from "./modules/auth";
+import cart from "./modules/cart";
+import partners from "./modules/partners";
+import slider from "./modules/slider";
+
 auth();
-partners();
 cart();
+partners();
+slider();

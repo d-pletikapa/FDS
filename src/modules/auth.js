@@ -1,61 +1,64 @@
 const auth = () => {
-	const userName = document.querySelector('.user-name');
-	const buttonAuth = document.querySelector('.button-auth');
-	const modalAuth = document.querySelector('.modal-auth');
-	const closeAuth = document.querySelector('.close-auth');
-	const buttonOut = document.querySelector('.button-out');
+  const buttonAuth = document.querySelector('.button-auth');
+  const modalAuth = document.querySelector('.modal-auth');
+  const buttonOut = document.querySelector('.button-out');
+  const userName = document.querySelector('.user-name');
+  const closeAuth = document.querySelector('.close-auth');
+  const logInForm = document.getElementById('logInForm');
+  const inputLogin = document.getElementById('login');
+  const inputPassword = document.getElementById('password');
+  const buttonCart = document.querySelector('.button-cart');
 
-	const loginForm = document.getElementById('logInForm');
-	const inputLogin = document.getElementById('login'); //inputLogin.setAttribute = ("required", "");
-	inputLogin.required = true;
-	const inputPassword = document.getElementById('password');
-	
+  const login = (user) => {
+    buttonAuth.style.display = 'none';
+    buttonOut.style.display = 'flex';
+    userName.style.display = 'flex';
+    buttonCart.style.display = 'flex';
+    userName.textContent = user.login;
+    modalAuth.style.display = 'none';
+  }
 
-	buttonAuth.addEventListener('click', () => { modalAuth.style.display = 'flex'; });
+  const logout = () => {
+    buttonAuth.style.display = 'flex';
+    buttonOut.style.display = 'none';
+    userName.style.display = 'none';
+    userName.textContent = '';
+    buttonCart.style.display = 'none';
+    localStorage.removeItem('user');
+  }
 
-	closeAuth.addEventListener('click', () => {
-		modalAuth.style.display = 'none';
-	});
+  buttonAuth.addEventListener('click', () => {
+    modalAuth.style.display = 'flex';
+  })
 
-	buttonOut.addEventListener('click', () => {
-		logout();
-	});
+  closeAuth.addEventListener('click', () => {
+    modalAuth.style.display = 'none';
+  })
 
-	const login = (user) => {
-		buttonAuth.style.display = 'none';
-		buttonOut.style.display = 'flex';
-		buttonCart.style.display = 'flex';
-		userName.style.display = 'flex';
-		userName.textContent = JSON.parse(localStorage.getItem('user')).login;
-		//userName.textContent = user.login;
-		modalAuth.style.display = 'none';
-	};
+  buttonOut.addEventListener('click', () => {
+    logout();
+  })
 
-	const logout = () => {
-		buttonAuth.style.display = 'flex';
-		buttonOut.style.display = 'none';
-		buttonCart.style.display = 'none';
-		userName.style.display = 'none';
-		userName.textContent = '';
-		localStorage.removeItem('user');
-	};
+  logInForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+    if (inputLogin.value.trim() && inputPassword.value) {
+      const user = {
+        login: inputLogin.value.trim(),
+        password: inputPassword.value
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+      login(user);
+    } else if (!inputLogin.value.trim()) {
+      alert('Для авторизации необходимо ввести логин');
+    } else if (!inputPassword.value) {
+      alert('Для авторизации необходимо ввести пароль');
+    }
+  })
 
-	if (localStorage.getItem('user')) {
-		login('localStorage', JSON.parse(localStorage.getItem('user')));
-		// console.log('localStorage', JSON.parse(localStorage.getItem('user')));
-	};
+  if (localStorage.getItem('user')) {
+    login(JSON.parse(localStorage.getItem('user')));
+  }
+}
 
-	loginForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-
-		const user = {
-			login: inputLogin.value,
-			password: inputPassword.value
-		};
-		localStorage.setItem('user', JSON.stringify(user));
-		login(user);
-	});
-};
-
-export default auth
-
+export default auth;
