@@ -75,7 +75,7 @@ const menu = () => {
     const restaurant = JSON.parse(localStorage.getItem('restaurant'));
     changeTitle(restaurant);
     
-    fetch(`https://fooddelivery-a5981-default-rtdb.firebaseio.com/db/${restaurant.products}`)
+    fetch(`https://fooddelivery-a5981-364d9-default-rtdb.europe-west1.firebasedatabase.app/db/${restaurant.products}`)
       .then((response) => response.json())
       .then((data) => {
         renderItems(data);
