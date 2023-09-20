@@ -5,19 +5,19 @@
 	"main": "webpack.config.js",
 	"scripts": {
 		"build": "webpack --mode=production",
-		"watch": "webpack --watch --mode=development"
+		"dev": "webpack --watch --mode=development"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/keta548/FDS.git"
+		"url": "git+https://github.com/d-pletikapa/FDS.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/keta548/FDS/issues"
+		"url": "https://github.com/d-pletikapa/FDS/issues"
 	},
-	"homepage": "https://github.com/keta548/FDS#readme",
+	"homepage": "https://github.com/d-pletikapa/FDS#readme",
 	"devDependencies": {
 		"eslint": "^8.2.0",
 		"webpack": "^5.62.1",
